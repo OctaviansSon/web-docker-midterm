@@ -4,6 +4,11 @@ Containerized REST backend for a team-based DevOps study planner (Trello-like). 
 invite teammates and manage a board of **tasks** (Backlog → In progress → Done) with DevOps topics
 (Docker, Kubernetes, AWS, Terraform, ...). The API also returns progress towards **AWS SAA / CKA / Terraform Associate**.
 It is the backend for the "DevOps Study Planner" Android app and for the optional web frontend in `web/`; everything is testable through Postman.
+## Database schema
+Entity-relationship, class, sequence and deployment diagrams: [docs/DATABASE.md](docs/DATABASE.md)
+
+Tables: `users`, `teams`, `team_members`, `tasks`.
+Relations: Team 1—N Task, Team 1—N TeamMember, User N—M Team (through `team_members`), User 1—N Task (assignee).
 
 ## Stack
 FastAPI (Python 3.12) · SQLAlchemy · PostgreSQL 16 · JWT auth · Docker · Docker Compose

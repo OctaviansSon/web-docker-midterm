@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+class User {
+  +id: int
+  +username: str
+  +email: str
+  +password_hash: str
+  +created_at: datetime
+}
+class Team {
+  +id: int
+  +name: str
+  +description: str
+  +owner_id: int
+  +created_at: datetime
+}
+class TeamMember {
+  +team_id: int
+  +user_id: int
+  +role: str
+  +joined_at: datetime
+}
+class Task {
+  +id: int
+  +team_id: int
+  +title: str
+  +description: str
+  +category: str
+  +priority: str
+  +status: str
+  +due_date: date
+  +assignee_id: int
+  +created_by_id: int
+}
+User "1" --> "0..*" Team : owns
+Team "1" *-- "1..*" TeamMember : members
+User "1" --> "0..*" TeamMember : memberships
+Team "1" *-- "0..*" Task : tasks
+Task "0..*" --> "0..1" User : assignee
+@enduml

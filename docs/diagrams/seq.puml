@@ -1,0 +1,12 @@
+@startuml
+actor Client
+participant "FastAPI" as API
+database "PostgreSQL" as DB
+Client -> API : POST /api/auth/login
+API -> DB : SELECT user by email
+API --> Client : 200 access_token
+Client -> API : POST /api/teams/{id}/tasks (Bearer token)
+API -> DB : check membership
+API -> DB : INSERT task
+API --> Client : 201 task
+@enduml
